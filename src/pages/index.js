@@ -2,18 +2,19 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import Sidebar from 'components/Sidebar'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div className=''>
-      <Head><title>Spotify 2.0</title></Head>
+    <div>
       <main>
-        {/*Sidebar */}
-        {/*center*/}
+        <Sidebar/>
+       
       </main>
-      <div>{/*Player*/}</div>
+      <div></div>
     </div>
   )
 }
