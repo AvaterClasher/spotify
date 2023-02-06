@@ -14,11 +14,14 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "heroicons": "^2.0.14",
+    "lodash": "^4.17.21",
     "next": "13.1.6",
     "next-auth": "^4.19.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "spotify-web-api-node": "^5.0.2"
+    "recoil": "^0.7.6",
+    "spotify-web-api-node": "^5.0.2",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
