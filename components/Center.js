@@ -1,12 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import { useSession } from 'next-auth/react';
-import { ChevronDoubleDownIcon } from '@heroicons/react/outline';
+import { signOut, useSession } from 'next-auth/react';
+import { ChevronDoubleDownIcon, ChevronDownIcon } from '@heroicons/react/outline';
 import { useEffect } from 'react';
 import {shuffle} from 'lodash';
 import {playlistIdState , playlistState} from "../atoms/playlistAtom";
 import { useRecoilState } from "recoil";
 import useSpotify from "hooks/useSpotify";
 import { useRecoilValue } from 'recoil';
+import Songs from './Songs';
 
 
 const colors = [
@@ -36,19 +38,27 @@ function Center() {
     }).catch((err) =>console.log("Something went wrong!",err));
   }, [spotifyApi, playlistId])
   console.log(playlist);
+
+
   return (
-    <div className='flex-grow'>
+    <div className='flex-grow h-screen overflow-y-scroll scrollbar-hide'>
         <header className='absolute top-5 right-8'>
-          <div className='flex items-center bg-red-400 space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2'>
+          <div className='flex items-center text-white bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2' onClick={signOut}>
             <img className="rounded-full w-10 h-10"src={session?.user.image} alt=""/>
             <h2>{session?.user.name}</h2>
-            <ChevronDoubleDownIcon className='h-5 w-5'/>
+            <ChevronDownIcon className='h-5 w-5'/>
           </div>
         </header>
-        <section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white padding-8`}>
-          <img/>
-          <h1>hello</h1>
+        <section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white p-10`}>
+          <img className='h-44 w-44 shadow-2xl ' src={playlist?.images?.[0]?.url} alt=""/>
+        <div>
+          <p>Playlist</p>
+          <h2 className='"text-2xl md:text-3xl xl:text-5xl font-bold'>{playlist?.name}</h2>
+        </div>
         </section>
+        <div>
+          <Songs/>
+        </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Sidebar from 'components/Sidebar'
 import Center from 'components/Center';
+import { getSession } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,4 +18,13 @@ export default function Home() {
       <div></div>
     </div>
   )
+}
+
+export async function getServerSideProps(context){
+  const session = await getSession(context);
+  return{
+    props:{
+      session,
+    },
+  }
 }
